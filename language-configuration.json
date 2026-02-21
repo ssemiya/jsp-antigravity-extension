@@ -1,0 +1,48 @@
+{
+  "comments": {
+    "blockComment": ["<%--", "--%>"]
+  },
+  "brackets": [
+    ["<%", "%>"],
+    ["${", "}"],
+    ["#{", "}"],
+    ["{", "}"],
+    ["[", "]"],
+    ["(", ")"],
+    ["<", ">"]
+  ],
+  "autoClosingPairs": [
+    { "open": "<%", "close": "%>" },
+    { "open": "<%--", "close": "--%>" },
+    { "open": "${", "close": "}" },
+    { "open": "#{", "close": "}" },
+    { "open": "{", "close": "}" },
+    { "open": "[", "close": "]" },
+    { "open": "(", "close": ")" },
+    { "open": "<", "close": ">" },
+    { "open": "\"", "close": "\"", "notIn": ["string"] },
+    { "open": "'", "close": "'", "notIn": ["string"] }
+  ],
+  "surroundingPairs": [
+    { "open": "<%", "close": "%>" },
+    { "open": "${", "close": "}" },
+    { "open": "#{", "close": "}" },
+    { "open": "{", "close": "}" },
+    { "open": "[", "close": "]" },
+    { "open": "(", "close": ")" },
+    { "open": "<", "close": ">" },
+    { "open": "\"", "close": "\"" },
+    { "open": "'", "close": "'" }
+  ],
+  "folding": {
+    "markers": {
+      "start": "^\\s*(<%--|<jsp:|<c:|<fmt:|<fn:|<sql:|<x:)",
+      "end": "^\\s*(--%>|/>|</jsp:|</c:|</fmt:|</fn:|</sql:|</x:)"
+    }
+  },
+  "indentationRules": {
+    "increaseIndentPattern": "<(?!\\?|area|base|br|col|frame|hr|html|img|input|link|meta|param|!--|%)[^/]*>\\s*$|<%[^%]*$|\\{\\s*$",
+    "decreaseIndentPattern": "^\\s*(<\\/|%>|\\})"
+  },
+  "wordPattern": "(-?\\d*\\.\\d\\w*)|([^\\`\\~\\!\\@\\#\\%\\^\\&\\*\\(\\)\\-\\=\\+\\[\\{\\]\\}\\\\\\|\\;\\:\\'\\\"\\,\\.\\<\\>\\/\\?\\s]+)"
+}

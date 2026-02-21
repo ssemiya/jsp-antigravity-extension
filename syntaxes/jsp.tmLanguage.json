@@ -1,0 +1,451 @@
+{
+  "$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
+  "name": "JSP",
+  "scopeName": "text.html.jsp",
+  "patterns": [
+    { "include": "#jsp-comment" },
+    { "include": "#jsp-declaration" },
+    { "include": "#jsp-expression" },
+    { "include": "#jsp-scriptlet" },
+    { "include": "#jsp-directive" },
+    { "include": "#jsp-action-tags" },
+    { "include": "#jstl-core" },
+    { "include": "#jstl-fmt" },
+    { "include": "#jstl-fn" },
+    { "include": "#jstl-sql" },
+    { "include": "#jstl-xml" },
+    { "include": "#el-expression" },
+    { "include": "#deferred-el-expression" },
+    { "include": "#html-tag" },
+    { "include": "#html-comment" },
+    { "include": "#html-entity" },
+    { "include": "text.html.basic" }
+  ],
+  "repository": {
+    "jsp-comment": {
+      "name": "comment.block.jsp",
+      "begin": "<%--",
+      "end": "--%>",
+      "beginCaptures": {
+        "0": { "name": "punctuation.definition.comment.begin.jsp" }
+      },
+      "endCaptures": {
+        "0": { "name": "punctuation.definition.comment.end.jsp" }
+      }
+    },
+    "jsp-declaration": {
+      "name": "meta.embedded.block.jsp.declaration",
+      "begin": "<%!",
+      "end": "%>",
+      "beginCaptures": {
+        "0": { "name": "punctuation.section.embedded.begin.jsp keyword.operator.declaration.jsp" }
+      },
+      "endCaptures": {
+        "0": { "name": "punctuation.section.embedded.end.jsp" }
+      },
+      "patterns": [
+        { "include": "source.java" }
+      ]
+    },
+    "jsp-expression": {
+      "name": "meta.embedded.block.jsp.expression",
+      "begin": "<%=",
+      "end": "%>",
+      "beginCaptures": {
+        "0": { "name": "punctuation.section.embedded.begin.jsp keyword.operator.expression.jsp" }
+      },
+      "endCaptures": {
+        "0": { "name": "punctuation.section.embedded.end.jsp" }
+      },
+      "patterns": [
+        { "include": "source.java" }
+      ]
+    },
+    "jsp-scriptlet": {
+      "name": "meta.embedded.block.jsp.scriptlet",
+      "begin": "<%(?![=!@-])",
+      "end": "%>",
+      "beginCaptures": {
+        "0": { "name": "punctuation.section.embedded.begin.jsp" }
+      },
+      "endCaptures": {
+        "0": { "name": "punctuation.section.embedded.end.jsp" }
+      },
+      "patterns": [
+        { "include": "source.java" }
+      ]
+    },
+    "jsp-directive": {
+      "name": "meta.tag.directive.jsp",
+      "begin": "<%@\\s*(page|include|taglib|tag|attribute|variable)",
+      "end": "%>",
+      "beginCaptures": {
+        "0": { "name": "punctuation.section.directive.begin.jsp" },
+        "1": { "name": "keyword.control.directive.jsp" }
+      },
+      "endCaptures": {
+        "0": { "name": "punctuation.section.directive.end.jsp" }
+      },
+      "patterns": [
+        { "include": "#tag-attribute" }
+      ]
+    },
+    "jsp-action-tags": {
+      "patterns": [
+        {
+          "name": "meta.tag.jsp-action.jsp",
+          "begin": "(<)(jsp)(:)(useBean|setProperty|getProperty|include|forward|param|plugin|params|fallback|attribute|body|element|text|invoke|doBody|output)(?=\\s|/?>)",
+          "end": "(/?>)",
+          "beginCaptures": {
+            "1": { "name": "punctuation.definition.tag.begin.jsp" },
+            "2": { "name": "entity.name.tag.namespace.jsp" },
+            "3": { "name": "punctuation.separator.namespace.jsp" },
+            "4": { "name": "entity.name.tag.localname.jsp" }
+          },
+          "endCaptures": {
+            "1": { "name": "punctuation.definition.tag.end.jsp" }
+          },
+          "patterns": [
+            { "include": "#tag-attribute" },
+            { "include": "#el-expression" },
+            { "include": "#deferred-el-expression" }
+          ]
+        },
+        {
+          "name": "meta.tag.jsp-action-close.jsp",
+          "match": "(</)(jsp)(:)(\\w+)(>)",
+          "captures": {
+            "1": { "name": "punctuation.definition.tag.begin.jsp" },
+            "2": { "name": "entity.name.tag.namespace.jsp" },
+            "3": { "name": "punctuation.separator.namespace.jsp" },
+            "4": { "name": "entity.name.tag.localname.jsp" },
+            "5": { "name": "punctuation.definition.tag.end.jsp" }
+          }
+        }
+      ]
+    },
+    "jstl-core": {
+      "patterns": [
+        {
+          "name": "meta.tag.jstl.core.jsp",
+          "begin": "(<)(c)(:)(out|set|remove|catch|if|choose|when|otherwise|forEach|forTokens|import|url|redirect|param)(?=\\s|/?>)",
+          "end": "(/?>)",
+          "beginCaptures": {
+            "1": { "name": "punctuation.definition.tag.begin.jsp" },
+            "2": { "name": "entity.name.tag.namespace.jstl.core" },
+            "3": { "name": "punctuation.separator.namespace.jsp" },
+            "4": { "name": "entity.name.tag.localname.jstl" }
+          },
+          "endCaptures": {
+            "1": { "name": "punctuation.definition.tag.end.jsp" }
+          },
+          "patterns": [
+            { "include": "#tag-attribute" },
+            { "include": "#el-expression" },
+            { "include": "#deferred-el-expression" }
+          ]
+        },
+        {
+          "name": "meta.tag.jstl.core-close.jsp",
+          "match": "(</)(c)(:)(\\w+)(>)",
+          "captures": {
+            "1": { "name": "punctuation.definition.tag.begin.jsp" },
+            "2": { "name": "entity.name.tag.namespace.jstl.core" },
+            "3": { "name": "punctuation.separator.namespace.jsp" },
+            "4": { "name": "entity.name.tag.localname.jstl" },
+            "5": { "name": "punctuation.definition.tag.end.jsp" }
+          }
+        }
+      ]
+    },
+    "jstl-fmt": {
+      "patterns": [
+        {
+          "name": "meta.tag.jstl.fmt.jsp",
+          "begin": "(<)(fmt)(:)(message|setLocale|bundle|setBundle|formatNumber|parseNumber|formatDate|parseDate|timeZone|setTimeZone|requestEncoding|param)(?=\\s|/?>)",
+          "end": "(/?>)",
+          "beginCaptures": {
+            "1": { "name": "punctuation.definition.tag.begin.jsp" },
+            "2": { "name": "entity.name.tag.namespace.jstl.fmt" },
+            "3": { "name": "punctuation.separator.namespace.jsp" },
+            "4": { "name": "entity.name.tag.localname.jstl" }
+          },
+          "endCaptures": {
+            "1": { "name": "punctuation.definition.tag.end.jsp" }
+          },
+          "patterns": [
+            { "include": "#tag-attribute" },
+            { "include": "#el-expression" },
+            { "include": "#deferred-el-expression" }
+          ]
+        },
+        {
+          "name": "meta.tag.jstl.fmt-close.jsp",
+          "match": "(</)(fmt)(:)(\\w+)(>)",
+          "captures": {
+            "1": { "name": "punctuation.definition.tag.begin.jsp" },
+            "2": { "name": "entity.name.tag.namespace.jstl.fmt" },
+            "3": { "name": "punctuation.separator.namespace.jsp" },
+            "4": { "name": "entity.name.tag.localname.jstl" },
+            "5": { "name": "punctuation.definition.tag.end.jsp" }
+          }
+        }
+      ]
+    },
+    "jstl-fn": {
+      "patterns": [
+        {
+          "name": "meta.tag.jstl.fn.jsp",
+          "begin": "(<)(fn)(:)(\\w+)(?=\\s|/?>)",
+          "end": "(/?>)",
+          "beginCaptures": {
+            "1": { "name": "punctuation.definition.tag.begin.jsp" },
+            "2": { "name": "entity.name.tag.namespace.jstl.fn" },
+            "3": { "name": "punctuation.separator.namespace.jsp" },
+            "4": { "name": "entity.name.tag.localname.jstl" }
+          },
+          "endCaptures": {
+            "1": { "name": "punctuation.definition.tag.end.jsp" }
+          },
+          "patterns": [
+            { "include": "#tag-attribute" },
+            { "include": "#el-expression" }
+          ]
+        }
+      ]
+    },
+    "jstl-sql": {
+      "patterns": [
+        {
+          "name": "meta.tag.jstl.sql.jsp",
+          "begin": "(<)(sql)(:)(query|update|transaction|setDataSource|param|dateParam)(?=\\s|/?>)",
+          "end": "(/?>)",
+          "beginCaptures": {
+            "1": { "name": "punctuation.definition.tag.begin.jsp" },
+            "2": { "name": "entity.name.tag.namespace.jstl.sql" },
+            "3": { "name": "punctuation.separator.namespace.jsp" },
+            "4": { "name": "entity.name.tag.localname.jstl" }
+          },
+          "endCaptures": {
+            "1": { "name": "punctuation.definition.tag.end.jsp" }
+          },
+          "patterns": [
+            { "include": "#tag-attribute" },
+            { "include": "#el-expression" }
+          ]
+        },
+        {
+          "name": "meta.tag.jstl.sql-close.jsp",
+          "match": "(</)(sql)(:)(\\w+)(>)",
+          "captures": {
+            "1": { "name": "punctuation.definition.tag.begin.jsp" },
+            "2": { "name": "entity.name.tag.namespace.jstl.sql" },
+            "3": { "name": "punctuation.separator.namespace.jsp" },
+            "4": { "name": "entity.name.tag.localname.jstl" },
+            "5": { "name": "punctuation.definition.tag.end.jsp" }
+          }
+        }
+      ]
+    },
+    "jstl-xml": {
+      "patterns": [
+        {
+          "name": "meta.tag.jstl.xml.jsp",
+          "begin": "(<)(x)(:)(parse|out|set|if|choose|when|otherwise|forEach|transform|param)(?=\\s|/?>)",
+          "end": "(/?>)",
+          "beginCaptures": {
+            "1": { "name": "punctuation.definition.tag.begin.jsp" },
+            "2": { "name": "entity.name.tag.namespace.jstl.xml" },
+            "3": { "name": "punctuation.separator.namespace.jsp" },
+            "4": { "name": "entity.name.tag.localname.jstl" }
+          },
+          "endCaptures": {
+            "1": { "name": "punctuation.definition.tag.end.jsp" }
+          },
+          "patterns": [
+            { "include": "#tag-attribute" },
+            { "include": "#el-expression" }
+          ]
+        },
+        {
+          "name": "meta.tag.jstl.xml-close.jsp",
+          "match": "(</)(x)(:)(\\w+)(>)",
+          "captures": {
+            "1": { "name": "punctuation.definition.tag.begin.jsp" },
+            "2": { "name": "entity.name.tag.namespace.jstl.xml" },
+            "3": { "name": "punctuation.separator.namespace.jsp" },
+            "4": { "name": "entity.name.tag.localname.jstl" },
+            "5": { "name": "punctuation.definition.tag.end.jsp" }
+          }
+        }
+      ]
+    },
+    "el-expression": {
+      "name": "meta.expression.el.jsp",
+      "begin": "\\$\\{",
+      "end": "\\}",
+      "beginCaptures": {
+        "0": { "name": "punctuation.section.embedded.begin.el" }
+      },
+      "endCaptures": {
+        "0": { "name": "punctuation.section.embedded.end.el" }
+      },
+      "patterns": [
+        { "include": "#el-contents" }
+      ]
+    },
+    "deferred-el-expression": {
+      "name": "meta.expression.deferred-el.jsp",
+      "begin": "#\\{",
+      "end": "\\}",
+      "beginCaptures": {
+        "0": { "name": "punctuation.section.embedded.begin.deferred-el" }
+      },
+      "endCaptures": {
+        "0": { "name": "punctuation.section.embedded.end.deferred-el" }
+      },
+      "patterns": [
+        { "include": "#el-contents" }
+      ]
+    },
+    "el-contents": {
+      "patterns": [
+        {
+          "name": "string.quoted.single.el",
+          "begin": "'",
+          "end": "'",
+          "patterns": [
+            { "match": "\\\\.", "name": "constant.character.escape.el" }
+          ]
+        },
+        {
+          "name": "string.quoted.double.el",
+          "begin": "\"",
+          "end": "\"",
+          "patterns": [
+            { "match": "\\\\.", "name": "constant.character.escape.el" }
+          ]
+        },
+        {
+          "name": "constant.numeric.el",
+          "match": "\\b\\d+(\\.\\d+)?\\b"
+        },
+        {
+          "name": "constant.language.el",
+          "match": "\\b(true|false|null)\\b"
+        },
+        {
+          "name": "keyword.operator.el",
+          "match": "\\b(and|or|not|eq|ne|lt|gt|le|ge|div|mod|empty|instanceof)\\b|[+\\-*/%<>=!&|?:]|&&|\\|\\||==|!=|<=|>="
+        },
+        {
+          "name": "support.function.el",
+          "match": "\\b(fn:length|fn:toUpperCase|fn:toLowerCase|fn:substring|fn:substringAfter|fn:substringBefore|fn:trim|fn:replace|fn:indexOf|fn:startsWith|fn:endsWith|fn:contains|fn:containsIgnoreCase|fn:split|fn:join|fn:escapeXml)\\b"
+        },
+        {
+          "name": "variable.language.el.implicit",
+          "match": "\\b(pageScope|requestScope|sessionScope|applicationScope|param|paramValues|header|headerValues|cookie|initParam|pageContext)\\b"
+        },
+        {
+          "name": "variable.other.el",
+          "match": "\\b[a-zA-Z_][a-zA-Z0-9_]*\\b"
+        },
+        {
+          "name": "punctuation.accessor.el",
+          "match": "\\."
+        },
+        {
+          "name": "punctuation.bracket.el",
+          "match": "[\\[\\]()]"
+        }
+      ]
+    },
+    "tag-attribute": {
+      "patterns": [
+        {
+          "name": "meta.attribute.jsp",
+          "match": "\\b([a-zA-Z_:][a-zA-Z0-9_.:-]*)\\s*(=)",
+          "captures": {
+            "1": { "name": "entity.other.attribute-name.jsp" },
+            "2": { "name": "punctuation.separator.key-value.jsp" }
+          }
+        },
+        {
+          "name": "string.quoted.double.jsp",
+          "begin": "\"",
+          "end": "\"",
+          "beginCaptures": {
+            "0": { "name": "punctuation.definition.string.begin.jsp" }
+          },
+          "endCaptures": {
+            "0": { "name": "punctuation.definition.string.end.jsp" }
+          },
+          "patterns": [
+            { "include": "#el-expression" },
+            { "include": "#deferred-el-expression" }
+          ]
+        },
+        {
+          "name": "string.quoted.single.jsp",
+          "begin": "'",
+          "end": "'",
+          "beginCaptures": {
+            "0": { "name": "punctuation.definition.string.begin.jsp" }
+          },
+          "endCaptures": {
+            "0": { "name": "punctuation.definition.string.end.jsp" }
+          },
+          "patterns": [
+            { "include": "#el-expression" },
+            { "include": "#deferred-el-expression" }
+          ]
+        }
+      ]
+    },
+    "html-tag": {
+      "patterns": [
+        {
+          "name": "meta.tag.html.jsp",
+          "begin": "(<)(\\w[\\w:-]*)(?=\\s|/?>)",
+          "end": "(/?>)",
+          "beginCaptures": {
+            "1": { "name": "punctuation.definition.tag.begin.html" },
+            "2": { "name": "entity.name.tag.html" }
+          },
+          "endCaptures": {
+            "1": { "name": "punctuation.definition.tag.end.html" }
+          },
+          "patterns": [
+            { "include": "#tag-attribute" },
+            { "include": "#el-expression" },
+            { "include": "#deferred-el-expression" }
+          ]
+        },
+        {
+          "name": "meta.tag.html-close.jsp",
+          "match": "(</)(\\w[\\w:-]*)(>)",
+          "captures": {
+            "1": { "name": "punctuation.definition.tag.begin.html" },
+            "2": { "name": "entity.name.tag.html" },
+            "3": { "name": "punctuation.definition.tag.end.html" }
+          }
+        }
+      ]
+    },
+    "html-comment": {
+      "name": "comment.block.html",
+      "begin": "<!--",
+      "end": "-->",
+      "beginCaptures": {
+        "0": { "name": "punctuation.definition.comment.begin.html" }
+      },
+      "endCaptures": {
+        "0": { "name": "punctuation.definition.comment.end.html" }
+      }
+    },
+    "html-entity": {
+      "name": "constant.character.entity.html",
+      "match": "&[a-zA-Z0-9#]+;"
+    }
+  }
+}

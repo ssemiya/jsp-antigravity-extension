@@ -1,0 +1,693 @@
+{
+  "// ===== JSP Directives =====": {},
+
+  "JSP Page Directive": {
+    "prefix": ["jsppage", "<%@page"],
+    "body": [
+      "<%@ page language=\"java\" contentType=\"text/html; charset=${1:UTF-8}\" pageEncoding=\"${2:UTF-8}\" %>"
+    ],
+    "description": "JSP page directive"
+  },
+  "JSP Page Directive Full": {
+    "prefix": ["jsppagefull"],
+    "body": [
+      "<%@ page language=\"java\"",
+      "    contentType=\"text/html; charset=${1:UTF-8}\"",
+      "    pageEncoding=\"${2:UTF-8}\"",
+      "    import=\"${3:java.util.*}\"",
+      "    session=\"${4|true,false|}\"",
+      "    isELIgnored=\"${5|false,true|}\"",
+      "    errorPage=\"${6:error.jsp}\" %>"
+    ],
+    "description": "JSP full page directive with common attributes"
+  },
+  "JSP Include Directive": {
+    "prefix": ["jspinclude", "<%@include"],
+    "body": [
+      "<%@ include file=\"${1:header.jsp}\" %>"
+    ],
+    "description": "JSP include directive"
+  },
+  "JSP Taglib Directive": {
+    "prefix": ["jsptaglib", "<%@taglib"],
+    "body": [
+      "<%@ taglib prefix=\"${1:c}\" uri=\"${2:http://java.sun.com/jsp/jstl/core}\" %>"
+    ],
+    "description": "JSP taglib directive"
+  },
+  "JSP Taglib JSTL Core": {
+    "prefix": ["taglibcore", "jstlcore"],
+    "body": [
+      "<%@ taglib prefix=\"c\" uri=\"http://java.sun.com/jsp/jstl/core\" %>"
+    ],
+    "description": "JSTL Core taglib"
+  },
+  "JSP Taglib JSTL Fmt": {
+    "prefix": ["taglibfmt", "jstlfmt"],
+    "body": [
+      "<%@ taglib prefix=\"fmt\" uri=\"http://java.sun.com/jsp/jstl/fmt\" %>"
+    ],
+    "description": "JSTL Format taglib"
+  },
+  "JSP Taglib JSTL Functions": {
+    "prefix": ["taglibfn", "jstlfn"],
+    "body": [
+      "<%@ taglib prefix=\"fn\" uri=\"http://java.sun.com/jsp/jstl/functions\" %>"
+    ],
+    "description": "JSTL Functions taglib"
+  },
+  "JSP Taglib JSTL SQL": {
+    "prefix": ["taglibsql", "jstlsql"],
+    "body": [
+      "<%@ taglib prefix=\"sql\" uri=\"http://java.sun.com/jsp/jstl/sql\" %>"
+    ],
+    "description": "JSTL SQL taglib"
+  },
+  "JSP Taglib JSTL XML": {
+    "prefix": ["taglibxml", "jstlxml"],
+    "body": [
+      "<%@ taglib prefix=\"x\" uri=\"http://java.sun.com/jsp/jstl/xml\" %>"
+    ],
+    "description": "JSTL XML taglib"
+  },
+  "JSP Taglib Spring": {
+    "prefix": ["taglibspring"],
+    "body": [
+      "<%@ taglib prefix=\"spring\" uri=\"http://www.springframework.org/tags\" %>"
+    ],
+    "description": "Spring taglib"
+  },
+  "JSP Taglib Spring Form": {
+    "prefix": ["taglibform", "springform"],
+    "body": [
+      "<%@ taglib prefix=\"form\" uri=\"http://www.springframework.org/tags/form\" %>"
+    ],
+    "description": "Spring Form taglib"
+  },
+
+  "// ===== JSP Code Blocks =====": {},
+
+  "JSP Scriptlet": {
+    "prefix": ["jspscriptlet", "<%"],
+    "body": [
+      "<%",
+      "    ${1:// Java code here}",
+      "%>"
+    ],
+    "description": "JSP scriptlet block"
+  },
+  "JSP Expression": {
+    "prefix": ["jspexpr", "<%="],
+    "body": [
+      "<%= ${1:expression} %>"
+    ],
+    "description": "JSP expression"
+  },
+  "JSP Declaration": {
+    "prefix": ["jspdecl", "<%!"],
+    "body": [
+      "<%!",
+      "    ${1:// declaration}",
+      "%>"
+    ],
+    "description": "JSP declaration block"
+  },
+  "JSP Comment": {
+    "prefix": ["jspcomment", "<%--"],
+    "body": [
+      "<%-- ${1:comment} --%>"
+    ],
+    "description": "JSP comment"
+  },
+  "JSP Comment Block": {
+    "prefix": ["jspcommentblock"],
+    "body": [
+      "<%--",
+      "    ${1:comment}",
+      "--%>"
+    ],
+    "description": "JSP multi-line comment"
+  },
+
+  "// ===== EL Expressions =====": {},
+
+  "EL Expression": {
+    "prefix": ["el", "${"],
+    "body": [
+      "\\${${1:expression}}"
+    ],
+    "description": "EL expression ${...}"
+  },
+  "EL Deferred Expression": {
+    "prefix": ["eld", "#{"],
+    "body": [
+      "#{${1:expression}}"
+    ],
+    "description": "Deferred EL expression #{...}"
+  },
+  "EL Request Param": {
+    "prefix": ["elparam"],
+    "body": [
+      "\\${param.${1:name}}"
+    ],
+    "description": "EL request parameter"
+  },
+  "EL Session Attribute": {
+    "prefix": ["elsession"],
+    "body": [
+      "\\${sessionScope.${1:attributeName}}"
+    ],
+    "description": "EL session scope attribute"
+  },
+  "EL Request Attribute": {
+    "prefix": ["elrequest"],
+    "body": [
+      "\\${requestScope.${1:attributeName}}"
+    ],
+    "description": "EL request scope attribute"
+  },
+  "EL Application Attribute": {
+    "prefix": ["elapp"],
+    "body": [
+      "\\${applicationScope.${1:attributeName}}"
+    ],
+    "description": "EL application scope attribute"
+  },
+  "EL Page Context": {
+    "prefix": ["elpagectx"],
+    "body": [
+      "\\${pageContext.request.${1:contextPath}}"
+    ],
+    "description": "EL page context"
+  },
+  "EL Ternary": {
+    "prefix": ["elternary"],
+    "body": [
+      "\\${${1:condition} ? '${2:true}' : '${3:false}'}"
+    ],
+    "description": "EL ternary expression"
+  },
+  "EL Empty Check": {
+    "prefix": ["elempty"],
+    "body": [
+      "\\${empty ${1:variable}}"
+    ],
+    "description": "EL empty check"
+  },
+
+  "// ===== JSTL Core Tags =====": {},
+
+  "c:out": {
+    "prefix": ["cout"],
+    "body": [
+      "<c:out value=\"\\${${1:expression}}\" ${2:escapeXml=\"true\"}/>"
+    ],
+    "description": "JSTL c:out tag"
+  },
+  "c:set": {
+    "prefix": ["cset"],
+    "body": [
+      "<c:set var=\"${1:varName}\" value=\"\\${${2:expression}}\" ${3|scope=\"page\",scope=\"request\",scope=\"session\",scope=\"application\"|}/>"
+    ],
+    "description": "JSTL c:set tag"
+  },
+  "c:set with body": {
+    "prefix": ["csetbody"],
+    "body": [
+      "<c:set var=\"${1:varName}\">",
+      "    ${2:value}",
+      "</c:set>"
+    ],
+    "description": "JSTL c:set with body content"
+  },
+  "c:remove": {
+    "prefix": ["cremove"],
+    "body": [
+      "<c:remove var=\"${1:varName}\" ${2|scope=\"page\",scope=\"request\",scope=\"session\",scope=\"application\"|}/>"
+    ],
+    "description": "JSTL c:remove tag"
+  },
+  "c:if": {
+    "prefix": ["cif"],
+    "body": [
+      "<c:if test=\"\\${${1:condition}}\">",
+      "    ${2}",
+      "</c:if>"
+    ],
+    "description": "JSTL c:if conditional"
+  },
+  "c:choose": {
+    "prefix": ["cchoose"],
+    "body": [
+      "<c:choose>",
+      "    <c:when test=\"\\${${1:condition}}\">",
+      "        ${2}",
+      "    </c:when>",
+      "    <c:otherwise>",
+      "        ${3}",
+      "    </c:otherwise>",
+      "</c:choose>"
+    ],
+    "description": "JSTL c:choose/when/otherwise"
+  },
+  "c:when": {
+    "prefix": ["cwhen"],
+    "body": [
+      "<c:when test=\"\\${${1:condition}}\">",
+      "    ${2}",
+      "</c:when>"
+    ],
+    "description": "JSTL c:when clause"
+  },
+  "c:otherwise": {
+    "prefix": ["cotherwise"],
+    "body": [
+      "<c:otherwise>",
+      "    ${1}",
+      "</c:otherwise>"
+    ],
+    "description": "JSTL c:otherwise clause"
+  },
+  "c:forEach": {
+    "prefix": ["cforeach", "cfor"],
+    "body": [
+      "<c:forEach var=\"${1:item}\" items=\"\\${${2:collection}}\" varStatus=\"${3:status}\">",
+      "    ${4}",
+      "</c:forEach>"
+    ],
+    "description": "JSTL c:forEach loop"
+  },
+  "c:forEach Range": {
+    "prefix": ["cforrange"],
+    "body": [
+      "<c:forEach var=\"${1:i}\" begin=\"${2:0}\" end=\"${3:10}\" step=\"${4:1}\">",
+      "    ${5}",
+      "</c:forEach>"
+    ],
+    "description": "JSTL c:forEach with range"
+  },
+  "c:forTokens": {
+    "prefix": ["cfortokens"],
+    "body": [
+      "<c:forTokens var=\"${1:token}\" items=\"\\${${2:string}}\" delims=\"${3:,}\">",
+      "    ${4}",
+      "</c:forTokens>"
+    ],
+    "description": "JSTL c:forTokens"
+  },
+  "c:import": {
+    "prefix": ["cimport"],
+    "body": [
+      "<c:import url=\"${1:url}\" ${2:var=\"content\"}/>"
+    ],
+    "description": "JSTL c:import"
+  },
+  "c:url": {
+    "prefix": ["curl"],
+    "body": [
+      "<c:url value=\"${1:/path}\" var=\"${2:urlVar}\">",
+      "    <c:param name=\"${3:paramName}\" value=\"\\${${4:paramValue}}\"/>",
+      "</c:url>"
+    ],
+    "description": "JSTL c:url with params"
+  },
+  "c:redirect": {
+    "prefix": ["credirect"],
+    "body": [
+      "<c:redirect url=\"${1:/path}\"/>"
+    ],
+    "description": "JSTL c:redirect"
+  },
+  "c:catch": {
+    "prefix": ["ccatch"],
+    "body": [
+      "<c:catch var=\"${1:exception}\">",
+      "    ${2}",
+      "</c:catch>",
+      "<c:if test=\"\\${not empty ${1:exception}}\">",
+      "    Error: \\${${1:exception}.message}",
+      "</c:if>"
+    ],
+    "description": "JSTL c:catch with error handling"
+  },
+  "c:param": {
+    "prefix": ["cparam"],
+    "body": [
+      "<c:param name=\"${1:name}\" value=\"\\${${2:value}}\"/>"
+    ],
+    "description": "JSTL c:param"
+  },
+
+  "// ===== JSTL Format Tags =====": {},
+
+  "fmt:message": {
+    "prefix": ["fmtmessage", "fmtmsg"],
+    "body": [
+      "<fmt:message key=\"${1:message.key}\"/>"
+    ],
+    "description": "JSTL fmt:message"
+  },
+  "fmt:formatNumber": {
+    "prefix": ["fmtnumber"],
+    "body": [
+      "<fmt:formatNumber value=\"\\${${1:number}}\" type=\"${2|number,currency,percent|}\" ${3:pattern=\"#,###.##\"}/>"
+    ],
+    "description": "JSTL fmt:formatNumber"
+  },
+  "fmt:formatDate": {
+    "prefix": ["fmtdate"],
+    "body": [
+      "<fmt:formatDate value=\"\\${${1:date}}\" pattern=\"${2:yyyy-MM-dd HH:mm:ss}\"/>"
+    ],
+    "description": "JSTL fmt:formatDate"
+  },
+  "fmt:setLocale": {
+    "prefix": ["fmtlocale"],
+    "body": [
+      "<fmt:setLocale value=\"${1:ko_KR}\"/>"
+    ],
+    "description": "JSTL fmt:setLocale"
+  },
+  "fmt:bundle": {
+    "prefix": ["fmtbundle"],
+    "body": [
+      "<fmt:bundle basename=\"${1:messages}\">",
+      "    ${2}",
+      "</fmt:bundle>"
+    ],
+    "description": "JSTL fmt:bundle"
+  },
+  "fmt:setBundle": {
+    "prefix": ["fmtsetbundle"],
+    "body": [
+      "<fmt:setBundle basename=\"${1:messages}\" var=\"${2:bundle}\"/>"
+    ],
+    "description": "JSTL fmt:setBundle"
+  },
+  "fmt:timeZone": {
+    "prefix": ["fmttz"],
+    "body": [
+      "<fmt:timeZone value=\"${1:Asia/Seoul}\">",
+      "    ${2}",
+      "</fmt:timeZone>"
+    ],
+    "description": "JSTL fmt:timeZone"
+  },
+
+  "// ===== JSTL SQL Tags =====": {},
+
+  "sql:setDataSource": {
+    "prefix": ["sqlsource"],
+    "body": [
+      "<sql:setDataSource var=\"${1:ds}\"",
+      "    driver=\"${2:com.mysql.cj.jdbc.Driver}\"",
+      "    url=\"${3:jdbc:mysql://localhost:3306/mydb}\"",
+      "    user=\"${4:root}\"",
+      "    password=\"${5:password}\"/>"
+    ],
+    "description": "JSTL sql:setDataSource"
+  },
+  "sql:query": {
+    "prefix": ["sqlquery"],
+    "body": [
+      "<sql:query var=\"${1:result}\" dataSource=\"\\${${2:ds}}\">",
+      "    SELECT ${3:*} FROM ${4:tableName} ${5:WHERE condition}",
+      "</sql:query>"
+    ],
+    "description": "JSTL sql:query"
+  },
+  "sql:update": {
+    "prefix": ["sqlupdate"],
+    "body": [
+      "<sql:update dataSource=\"\\${${1:ds}}\">",
+      "    ${2:UPDATE tableName SET col = ? WHERE id = ?}",
+      "    <sql:param value=\"\\${${3:value}}\"/>",
+      "</sql:update>"
+    ],
+    "description": "JSTL sql:update"
+  },
+
+  "// ===== JSP Action Tags =====": {},
+
+  "jsp:include": {
+    "prefix": ["jspinc"],
+    "body": [
+      "<jsp:include page=\"${1:page.jsp}\"/>"
+    ],
+    "description": "jsp:include action"
+  },
+  "jsp:include with param": {
+    "prefix": ["jspincparam"],
+    "body": [
+      "<jsp:include page=\"${1:page.jsp}\">",
+      "    <jsp:param name=\"${2:paramName}\" value=\"${3:paramValue}\"/>",
+      "</jsp:include>"
+    ],
+    "description": "jsp:include with parameters"
+  },
+  "jsp:forward": {
+    "prefix": ["jspfwd"],
+    "body": [
+      "<jsp:forward page=\"${1:page.jsp}\"/>"
+    ],
+    "description": "jsp:forward action"
+  },
+  "jsp:useBean": {
+    "prefix": ["jspbean"],
+    "body": [
+      "<jsp:useBean id=\"${1:beanName}\" class=\"${2:com.example.MyBean}\" scope=\"${3|page,request,session,application|}\"/>"
+    ],
+    "description": "jsp:useBean action"
+  },
+  "jsp:setProperty": {
+    "prefix": ["jspsetprop"],
+    "body": [
+      "<jsp:setProperty name=\"${1:beanName}\" property=\"${2:*}\"/>"
+    ],
+    "description": "jsp:setProperty action"
+  },
+  "jsp:getProperty": {
+    "prefix": ["jspgetprop"],
+    "body": [
+      "<jsp:getProperty name=\"${1:beanName}\" property=\"${2:propertyName}\"/>"
+    ],
+    "description": "jsp:getProperty action"
+  },
+
+  "// ===== Spring Form Tags =====": {},
+
+  "Spring form:form": {
+    "prefix": ["formform", "springformform"],
+    "body": [
+      "<form:form modelAttribute=\"${1:formBean}\" action=\"${2:/submit}\" method=\"${3|post,get|}\">",
+      "    ${4}",
+      "</form:form>"
+    ],
+    "description": "Spring form:form tag"
+  },
+  "Spring form:input": {
+    "prefix": ["forminput"],
+    "body": [
+      "<form:input path=\"${1:fieldName}\" cssClass=\"${2:form-control}\"/>"
+    ],
+    "description": "Spring form:input"
+  },
+  "Spring form:select": {
+    "prefix": ["formselect"],
+    "body": [
+      "<form:select path=\"${1:fieldName}\" cssClass=\"${2:form-control}\">",
+      "    <form:option value=\"\" label=\"-- Select --\"/>",
+      "    <form:options items=\"\\${${3:optionList}}\" itemValue=\"${4:id}\" itemLabel=\"${5:name}\"/>",
+      "</form:select>"
+    ],
+    "description": "Spring form:select with options"
+  },
+  "Spring form:errors": {
+    "prefix": ["formerrors"],
+    "body": [
+      "<form:errors path=\"${1:fieldName}\" cssClass=\"${2:text-danger}\"/>"
+    ],
+    "description": "Spring form:errors"
+  },
+  "Spring form:textarea": {
+    "prefix": ["formtextarea"],
+    "body": [
+      "<form:textarea path=\"${1:fieldName}\" rows=\"${2:5}\" cssClass=\"${3:form-control}\"/>"
+    ],
+    "description": "Spring form:textarea"
+  },
+  "Spring form:checkbox": {
+    "prefix": ["formcheckbox"],
+    "body": [
+      "<form:checkbox path=\"${1:fieldName}\" value=\"${2:value}\"/>"
+    ],
+    "description": "Spring form:checkbox"
+  },
+  "Spring form:radiobutton": {
+    "prefix": ["formradio"],
+    "body": [
+      "<form:radiobutton path=\"${1:fieldName}\" value=\"${2:value}\"/>"
+    ],
+    "description": "Spring form:radiobutton"
+  },
+  "Spring form:hidden": {
+    "prefix": ["formhidden"],
+    "body": [
+      "<form:hidden path=\"${1:fieldName}\"/>"
+    ],
+    "description": "Spring form:hidden"
+  },
+
+  "// ===== Templates =====": {},
+
+  "JSP Page Template": {
+    "prefix": ["jsptemplate", "jsphtml"],
+    "body": [
+      "<%@ page language=\"java\" contentType=\"text/html; charset=UTF-8\" pageEncoding=\"UTF-8\" %>",
+      "<%@ taglib prefix=\"c\" uri=\"http://java.sun.com/jsp/jstl/core\" %>",
+      "<%@ taglib prefix=\"fmt\" uri=\"http://java.sun.com/jsp/jstl/fmt\" %>",
+      "<!DOCTYPE html>",
+      "<html>",
+      "<head>",
+      "    <meta charset=\"UTF-8\">",
+      "    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">",
+      "    <title>${1:Page Title}</title>",
+      "    <link rel=\"stylesheet\" href=\"<c:url value='/css/${2:style}.css'/>\">",
+      "</head>",
+      "<body>",
+      "    <jsp:include page=\"/WEB-INF/views/common/header.jsp\"/>",
+      "    ",
+      "    <div class=\"container\">",
+      "        ${3}",
+      "    </div>",
+      "    ",
+      "    <jsp:include page=\"/WEB-INF/views/common/footer.jsp\"/>",
+      "    <script src=\"<c:url value='/js/${4:main}.js'/>\"></script>",
+      "</body>",
+      "</html>"
+    ],
+    "description": "Full JSP page template with JSTL"
+  },
+  "JSP Table with forEach": {
+    "prefix": ["jsptable"],
+    "body": [
+      "<table class=\"${1:table}\">",
+      "    <thead>",
+      "        <tr>",
+      "            <th>${2:Column1}</th>",
+      "            <th>${3:Column2}</th>",
+      "            <th>${4:Column3}</th>",
+      "        </tr>",
+      "    </thead>",
+      "    <tbody>",
+      "        <c:forEach var=\"${5:item}\" items=\"\\${${6:list}}\" varStatus=\"status\">",
+      "        <tr>",
+      "            <td>\\${status.count}</td>",
+      "            <td><c:out value=\"\\${${5:item}.${7:field1}}\"/></td>",
+      "            <td><c:out value=\"\\${${5:item}.${8:field2}}\"/></td>",
+      "        </tr>",
+      "        </c:forEach>",
+      "        <c:if test=\"\\${empty ${6:list}}\">",
+      "        <tr>",
+      "            <td colspan=\"3\">데이터가 없습니다.</td>",
+      "        </tr>",
+      "        </c:if>",
+      "    </tbody>",
+      "</table>"
+    ],
+    "description": "JSP table with c:forEach loop"
+  },
+  "JSP Error Page": {
+    "prefix": ["jsperrorpage"],
+    "body": [
+      "<%@ page language=\"java\" contentType=\"text/html; charset=UTF-8\" isErrorPage=\"true\" %>",
+      "<!DOCTYPE html>",
+      "<html>",
+      "<head>",
+      "    <meta charset=\"UTF-8\">",
+      "    <title>Error</title>",
+      "</head>",
+      "<body>",
+      "    <h1>오류가 발생했습니다</h1>",
+      "    <p>Error: <%= exception.getMessage() %></p>",
+      "    <p>Status: <%= response.getStatus() %></p>",
+      "    <a href=\"<%= request.getContextPath() %>/\">홈으로 돌아가기</a>",
+      "</body>",
+      "</html>"
+    ],
+    "description": "JSP error page template"
+  },
+  "JSP Pagination": {
+    "prefix": ["jsppaging", "jsppagination"],
+    "body": [
+      "<nav>",
+      "    <ul class=\"pagination\">",
+      "        <c:if test=\"\\${${1:page}.hasPrevious}\">",
+      "        <li class=\"page-item\">",
+      "            <a class=\"page-link\" href=\"?page=\\${${1:page}.number - 1}\">이전</a>",
+      "        </li>",
+      "        </c:if>",
+      "        <c:forEach var=\"i\" begin=\"1\" end=\"\\${${1:page}.totalPages}\">",
+      "        <li class=\"page-item \\${${1:page}.number + 1 eq i ? 'active' : ''}\">",
+      "            <a class=\"page-link\" href=\"?page=\\${i - 1}\">\\${i}</a>",
+      "        </li>",
+      "        </c:forEach>",
+      "        <c:if test=\"\\${${1:page}.hasNext}\">",
+      "        <li class=\"page-item\">",
+      "            <a class=\"page-link\" href=\"?page=\\${${1:page}.number + 1}\">다음</a>",
+      "        </li>",
+      "        </c:if>",
+      "    </ul>",
+      "</nav>"
+    ],
+    "description": "JSP pagination with Spring Page object"
+  },
+
+  "// ===== EL Function Snippets =====": {},
+
+  "fn:length": {
+    "prefix": ["fnlength"],
+    "body": ["\\${fn:length(${1:collection})}"],
+    "description": "JSTL fn:length"
+  },
+  "fn:toUpperCase": {
+    "prefix": ["fnupper"],
+    "body": ["\\${fn:toUpperCase(${1:string})}"],
+    "description": "JSTL fn:toUpperCase"
+  },
+  "fn:toLowerCase": {
+    "prefix": ["fnlower"],
+    "body": ["\\${fn:toLowerCase(${1:string})}"],
+    "description": "JSTL fn:toLowerCase"
+  },
+  "fn:contains": {
+    "prefix": ["fncontains"],
+    "body": ["\\${fn:contains(${1:string}, '${2:search}')}"],
+    "description": "JSTL fn:contains"
+  },
+  "fn:replace": {
+    "prefix": ["fnreplace"],
+    "body": ["\\${fn:replace(${1:string}, '${2:before}', '${3:after}')}"],
+    "description": "JSTL fn:replace"
+  },
+  "fn:substring": {
+    "prefix": ["fnsubstring"],
+    "body": ["\\${fn:substring(${1:string}, ${2:beginIndex}, ${3:endIndex})}"],
+    "description": "JSTL fn:substring"
+  },
+  "fn:split": {
+    "prefix": ["fnsplit"],
+    "body": ["\\${fn:split(${1:string}, '${2:delimiter}')}"],
+    "description": "JSTL fn:split"
+  },
+  "fn:trim": {
+    "prefix": ["fntrim"],
+    "body": ["\\${fn:trim(${1:string})}"],
+    "description": "JSTL fn:trim"
+  },
+  "fn:escapeXml": {
+    "prefix": ["fnescapexml"],
+    "body": ["\\${fn:escapeXml(${1:string})}"],
+    "description": "JSTL fn:escapeXml"
+  }
+}

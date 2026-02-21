@@ -1,0 +1,154 @@
+{
+  "name": "jsp-complete",
+  "displayName": "JSP Complete - Syntax, Formatting & IntelliSense",
+  "description": "Complete JSP (Jakarta Server Pages) support for Google Antigravity / VS Code: syntax highlighting, formatting, auto-completion for JSTL, EL expressions, and JSP directives.",
+  "version": "1.0.0",
+  "publisher": "dongseop-kim",
+  "author": {
+    "name": "DongSeop Kim",
+    "url": "https://karaf.io"
+  },
+  "homepage": "https://karaf.io",
+  "license": "MIT",
+  "engines": {
+    "vscode": "^1.80.0"
+  },
+  "categories": [
+    "Programming Languages",
+    "Formatters",
+    "Snippets"
+  ],
+  "keywords": [
+    "jsp",
+    "java server pages",
+    "jakarta",
+    "jstl",
+    "el",
+    "expression language",
+    "antigravity"
+  ],
+  "icon": "images/icon.png",
+  "activationEvents": [
+    "onLanguage:jsp"
+  ],
+  "main": "./out/extension.js",
+  "contributes": {
+    "languages": [
+      {
+        "id": "jsp",
+        "aliases": [
+          "JSP",
+          "Java Server Pages",
+          "Jakarta Server Pages"
+        ],
+        "extensions": [
+          ".jsp",
+          ".jspf",
+          ".jspx",
+          ".tag",
+          ".tagf",
+          ".tagx"
+        ],
+        "configuration": "./language-configuration.json"
+      }
+    ],
+    "grammars": [
+      {
+        "language": "jsp",
+        "scopeName": "text.html.jsp",
+        "path": "./syntaxes/jsp.tmLanguage.json",
+        "embeddedLanguages": {
+          "source.java": "java",
+          "source.js": "javascript",
+          "source.css": "css",
+          "text.html.basic": "html"
+        }
+      }
+    ],
+    "snippets": [
+      {
+        "language": "jsp",
+        "path": "./snippets/jsp.json"
+      }
+    ],
+    "configuration": {
+      "title": "JSP Complete",
+      "properties": {
+        "jspComplete.format.enable": {
+          "type": "boolean",
+          "default": true,
+          "description": "Enable/disable JSP formatting"
+        },
+        "jspComplete.format.tabSize": {
+          "type": "number",
+          "default": 4,
+          "description": "Tab size for JSP formatting"
+        },
+        "jspComplete.format.insertSpaces": {
+          "type": "boolean",
+          "default": true,
+          "description": "Use spaces instead of tabs"
+        },
+        "jspComplete.format.preserveNewlines": {
+          "type": "boolean",
+          "default": true,
+          "description": "Preserve existing newlines"
+        },
+        "jspComplete.format.maxPreserveNewlines": {
+          "type": "number",
+          "default": 2,
+          "description": "Maximum number of consecutive newlines to preserve"
+        },
+        "jspComplete.format.wrapLineLength": {
+          "type": "number",
+          "default": 120,
+          "description": "Maximum line length before wrapping"
+        },
+        "jspComplete.completion.enableJSTL": {
+          "type": "boolean",
+          "default": true,
+          "description": "Enable JSTL tag auto-completion"
+        },
+        "jspComplete.completion.enableEL": {
+          "type": "boolean",
+          "default": true,
+          "description": "Enable Expression Language auto-completion"
+        },
+        "jspComplete.completion.enableDirectives": {
+          "type": "boolean",
+          "default": true,
+          "description": "Enable JSP directive auto-completion"
+        },
+        "jspComplete.validation.enable": {
+          "type": "boolean",
+          "default": true,
+          "description": "Enable JSP validation/diagnostics"
+        }
+      }
+    },
+    "commands": [
+      {
+        "command": "jspComplete.formatDocument",
+        "title": "JSP: Format Document"
+      },
+      {
+        "command": "jspComplete.formatSelection",
+        "title": "JSP: Format Selection"
+      }
+    ]
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run compile",
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./",
+    "lint": "eslint src --ext ts"
+  },
+  "devDependencies": {
+    "@types/node": "^20.0.0",
+    "@types/vscode": "^1.80.0",
+    "typescript": "^5.3.0"
+  },
+  "dependencies": {
+    "js-beautify": "^1.14.0"
+  }
+}
